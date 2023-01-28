@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.border-hover{
+    @apply border-b-4 border-transparent hover:border-yellow-400;
+}
