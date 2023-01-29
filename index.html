@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis calificaciones</title>
     <link rel="stylesheet" href="./src/css/estilos.css">
 </head>
@@ -43,8 +43,8 @@
     </nav>
     
     <main>
-        <section class="w-4/12">
-            Datos del trimestre
+        <section class="w-full md:w-4/12">
+            <p>Datos del trimestre</p>
             <form id="formulario">
                 <label for="nombre">
                     Trimestre
@@ -61,7 +61,7 @@
                     <input id="fecha_final" type="date" class="w-full">
                 </label>
 
-                <div class="flex justify-end py-4">
+                <div class="footer">
                     <button id="guardar" type="button">
                         Guardar
                     </button>
@@ -70,7 +70,64 @@
         </section>
 
         <section class="flex-1">
-            Tabla
+            <p>Lista de trimestres gestionados</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nombre</th>
+                        <th>Fechas</th>
+                        <th>Tareas</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>I Trimetre</td>
+                        <td>01/01/2023 - 30/04/2023</td>
+                        <td>
+                            <div class="tareas">
+                                <button class="editar">Editar</button>
+                                <button class="eliminar">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>II Trimetre</td>
+                        <td>01/01/2023 - 30/04/2023</td>
+                        <td>
+                            <div class="tareas">
+                                <button class="editar">Editar</button>
+                                <button class="eliminar">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>III Trimetre</td>
+                        <td>01/01/2023 - 30/04/2023</td>
+                        <td>
+                            <div class="tareas">
+                                <button class="editar">Editar</button>
+                                <button class="eliminar">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>IV Trimetre</td>
+                        <td>01/01/2023 - 30/04/2023</td>
+                        <td>
+                            <div class="tareas">
+                                <button class="editar">Editar</button>
+                                <button class="eliminar">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
     </main>
 </body>

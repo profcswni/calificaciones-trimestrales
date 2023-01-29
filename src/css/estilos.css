@@ -20,14 +20,17 @@ header {
 }
 
 input {
-    @apply p-2 border border-gray-200 rounded-lg ;
+    @apply p-2 rounded-lg ring-2 ring-green-200 focus:ring-green-400 focus:border-none focus:outline-none;
 }
 
 section{
     @apply p-4 border border-gray-100 rounded-lg shadow-lg bg-gray-50 shadow-stone-500;
 }
+section p{
+    @apply text-[1.5em] border-b-2 border-green-200 uppercase mb-4;
+}
 main{
-    @apply flex gap-2 p-2 mt-4 text-gray-700;
+    @apply flex flex-col gap-2 p-2 mt-4 text-gray-700 md:flex-row;
 }
 nav{
     @apply flex justify-between p-4 text-white shadow-lg bg-gradient-to-b from-blue-500 to-blue-700 shadow-gray-400;
@@ -40,6 +43,34 @@ nav li:hover{
     @apply hover:border-yellow-400; 
 }
 
-button[type="button"] {
-    @apply p-4 text-white bg-blue-500 rounded-lg; 
+button[type="button"], button {
+    @apply px-4 py-2 
+    text-white 
+    bg-green-400 rounded-lg hover:bg-green-500 active:bg-green-600
+    active:ring-4
+    active:top-[2px] active:relative; 
 }
+
+.footer {
+    @apply relative bottom-0 flex justify-end p-2 mt-4 bg-green-100 border-t border-green-700 border-dashed rounded-b-lg;
+}
+
+table{
+    @apply w-full;
+}
+td{
+    @apply py-2 border-b border-gray-200;
+}
+/*Div que contiene los botones de editar y eliminar*/
+.tareas{
+    @apply flex items-start justify-center gap-2;
+}
+
+/*Estilos para los botones de editar y eliminar*/
+.editar {
+    @apply bg-amber-400 hover:bg-amber-500 active:bg-amber-600 active:ring-amber-500 active:ring-4;
+}
+.eliminar {
+    @apply bg-rose-400 hover:bg-rose-500 active:bg-rose-600 active:ring-rose-500 active:ring-4;
+}
+
