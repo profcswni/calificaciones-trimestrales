@@ -2,6 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-.border-hover{
-    @apply border-b-4 border-transparent hover:border-yellow-400;
+body{
+    @apply text-white bg-gray-200;
+}
+
+header {
+    @apply bg-opacity-90
+    font-bold
+    py-10
+    text-center
+     text-white
+     uppercase 
+     text-[2em]
+     bg-gradient-to-b
+     from-green-600
+     to-green-400;
+}
+
+input {
+    @apply p-2 border border-gray-200 rounded-lg ;
+}
+
+section{
+    @apply p-4 border border-gray-100 rounded-lg shadow-lg bg-gray-50 shadow-stone-500;
+}
+main{
+    @apply flex gap-2 p-2 mt-4 text-gray-700;
+}
+nav{
+    @apply flex justify-between p-4 text-white shadow-lg bg-gradient-to-b from-blue-500 to-blue-700 shadow-gray-400;
+}
+
+nav li{
+    @apply border-b-4 border-transparent; 
+}
+nav li:hover{
+    @apply hover:border-yellow-400; 
+}
+
+button[type="button"] {
+    @apply p-4 text-white bg-blue-500 rounded-lg; 
 }
