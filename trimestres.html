@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis calificaciones</title>
+    <link rel="stylesheet" href="./src/css/estilos.css">
+</head>
+<body>
+    <header>
+        <!-- Insertar el logo de la universidad -->
+        <img src="./src/images/logo.png" 
+            alt="Logo de la universidad">
+        Administración de mis calificaciones
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="index.html">Inicio</a>
+            </li>
+
+            <li>
+                <a href="calificaciones.html">Calificaciones</a>
+            </li>
+
+            <li>
+                <a href="trimestres.html">Trimestres</a>
+            </li>
+        </ul>
+
+        <ul>
+            <li>
+                <a href="perfil.html">Mi nombre</a>
+            </li>
+
+            <li>
+                <a href="cerrar-sesión.html">Cerrar sesión</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>       
+        <section class="w-full md:w-4/12 ">
+            <p>Datos del trimestre</p>
+            <form action="" id="formulario">
+                <label for="nombre">
+                    Trimestre
+                    <input name="nombre" type="text" required>
+                </label>
+
+                <label for="fecha_inicio">
+                    Fecha de inicio
+                    <input name="fecha_inicio" type="date" required>
+                </label>
+
+                <label for="fecha_fin">
+                    Fecha de fin
+                    <input name="fecha_fin" type="date" required>
+                </label>
+
+                <div class="footer">
+                    <button id="guardar" type="button">
+                        Guardar
+                    </button>
+                </div>
+                
+            </form>
+        </section>
+
+        <section class="w-full md:w-8/12">
+            <p>Trimestres registrados</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nombre</th>
+                        <th>Fechas</th>
+                        <th>Tareas</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>I Trimetre</td>
+                        <td>01/01/2023 - 30/04/2023</td>
+                        <td>
+                            <div class="tareas">
+                                <button class="editar">Editar</button>
+                                <button class="eliminar">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>                    
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <!-- Incluir el modelo trimestres para manipular la coleccion -->
+    <script type="module" >
+        import {guardarTrimestre} from './src/modelos/trimestres.js';
+
+        // Obtener el formulario
+        const formulario = document.getElementById('formulario');
+
+        // Obtener el boton guardar
+        const botonGuardar = document.getElementById('guardar');
+
+        // Agregar un evento al boton guardar
+        botonGuardar.addEventListener('click', () => {
+            // Obtener los datos del formulario
+            const nombre = formulario.nombre.value;
+            const fecha_inicio = formulario.fecha_inicio.value;
+            const fecha_fin = formulario.fecha_fin.value;
+
+            // Crear un objeto con los datos del formulario
+            const datos = {
+                nombre,
+                fecha_inicio,
+                fecha_fin
+            };
+
+            // Guardar los datos en el servidor
+            guardarTrimestre(datos);
+        });
+
+    </script>
+</body>
+</html>

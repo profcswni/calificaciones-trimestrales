@@ -10,12 +10,13 @@ import {
     addDoc,
     doc,
     getDoc,
-    updateDoc } from 'firebase/firebase-firestore' 
+    updateDoc } from 'firebase/firestore' 
 
-    //Conectarnos a la base de datos
+//Conectarnos a la base de datos
 export const db = getFirestore();
 
 //Guardar un trimestre
-export const guardarTrimestre = (nombre, fecha_inicio, fecha_fin) => {
-    addDoc(collection(db, 'trimestre'), {nombre, fecha_inicio, fecha_fin})
+export const guardarTrimestre = (datos) => {
+    addDoc(collection(db, 'trimestres'), datos)
 }
+

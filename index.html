@@ -10,14 +10,13 @@
 <body>
     <header>
         <!-- Insertar el logo de la universidad -->
-        <img class="block w-auto h-24 mx-auto" 
-            src="./src/images/logo.png" 
+        <img src="./src/images/logo.png" 
             alt="Logo de la universidad">
         Administración de mis calificaciones
     </header>
 
     <nav>
-        <ul class="flex gap-4">
+        <ul>
             <li>
                 <a href="index.html">Inicio</a>
             </li>
@@ -31,7 +30,7 @@
             </li>
         </ul>
 
-        <ul class="flex gap-4">
+        <ul>
             <li>
                 <a href="perfil.html">Mi nombre</a>
             </li>
@@ -41,8 +40,67 @@
             </li>
         </ul>
     </nav>
+
+    <main>       
+        <section class="w-full md:w-4/12 ">
+            <p>Datos del trimestre</p>
+            <form action="" id="formulario">
+                <label for="nombre">
+                    Trimestre
+                    <input id="nombre" type="text" required>
+                </label>
+
+                <label for="fecha_inicio">
+                    Fecha de inicio
+                    <input id="fecha_inicio" type="date" required>
+                </label>
+
+                <label for="fecha_fin">
+                    Fecha de fin
+                    <input  id="fecha_fin" type="date" required>
+                </label>
+
+                <div class="footer">
+                    <button id="guardar" type="button">
+                        Guardar
+                    </button>
+                </div>
+                
+            </form>
+        </section>
+
+        <section class="w-full md:w-8/12">
+            <p>Trimestres registrados</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nombre</th>
+                        <th>Fechas</th>
+                        <th>Tareas</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>I Trimetre</td>
+                        <td>01/01/2023 - 30/04/2023</td>
+                        <td>
+                            <div class="tareas">
+                                <button class="editar">Editar</button>
+                                <button class="eliminar">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>                    
+                </tbody>
+            </table>
+        </section>
+    </main>
+
     
-    <main>
+    
+    <!--       <main>
         <section class="w-full md:w-4/12">
             <p>Datos del trimestre</p>
             <form id="formulario">
@@ -129,6 +187,6 @@
                 </tbody>
             </table>
         </section>
-    </main>
+    </main>-->
 </body>
 </html>
