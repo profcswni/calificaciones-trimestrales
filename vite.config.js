@@ -12,7 +12,7 @@ export default defineConfig({
   //Add base route if deployiing on production
   base: env.mode === "production" ? "/calificaciones-trimestrales/" : "/",
   build: {
-    outDir: "docs",
+    outDir: "public",
     assetsDir: "assets"
   },
   plugins: []
