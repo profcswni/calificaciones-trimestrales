@@ -10,7 +10,8 @@ console.log('Environment: ', env.mode);
 export default defineConfig({
   root: "./sistemas-2022-2027",
   //Add base route if deployiing on production
-  base: env.mode === "production" ? "/calificaciones-trimestrales/" : "/",
+  //calificaciones-trimestrales
+  base: env.mode === "production" ? "/" : "/",
   build: {
     outDir: "public",
     assetsDir: "assets"
