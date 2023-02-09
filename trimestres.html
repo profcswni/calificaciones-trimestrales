@@ -81,31 +81,86 @@
                     </tr>
                 </thead>
 
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>I Trimetre</td>
-                        <td>01/01/2023 - 30/04/2023</td>
-                        <td>
-                            <div class="tareas">
-                                <button class="editar">Editar</button>
-                                <button class="eliminar">Eliminar</button>
-                            </div>
-                        </td>
-                    </tr>                    
+                <tbody id="trimestres">
+                               
                 </tbody>
             </table>
         </section>
     </main>
     <!-- Incluir el modelo trimestres para manipular la coleccion -->
     <script type="module" >
-        import {guardarTrimestre} from './src/modelos/trimestres.js';
-
+        import {guardarTrimestre, obtenerTrimestres, obtenerTrimestre, actualizarTrimestre} from './src/modelos/trimestres.js';
         // Obtener el formulario
         const formulario = document.getElementById('formulario');
 
         // Obtener el boton guardar
         const botonGuardar = document.getElementById('guardar');
+        
+        // Obtener el tbody de la tabla
+        const tbody = document.getElementById("trimestres");
+        
+        //Flag para saber si estamos editando o creando un trimestre
+        let editStatus = false;
+
+        // Variable para almacenar el id del trimestre a editar
+        let id = '';
+        
+        // Obtener los trimestres del servidor usando el evento
+        // DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', async () => {
+            await obtenerTrimestres((datos) => {
+                
+                tbody.innerHTML = '';
+                
+                datos.forEach((trimestre) => {
+
+                    tbody.innerHTML += `
+                    <tr>
+                        <td>1</td>
+                        <td>${trimestre.nombre}</td>
+                        <td>${trimestre.fecha_inicio} - ${trimestre.fecha_fin}</td>
+                        <td>
+                            <div class="tareas">
+                                <button data-id="${trimestre.id}" class="editar">Editar</button>
+                                <button data-id="${trimestre.id}" class="eliminar">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                    `;
+                });
+                
+                //Evento para editar los trimestres al dar clic en el boton .editar
+                const btnsEditar = document.querySelectorAll('.editar');
+
+                btnsEditar.forEach((btn) => {
+                    btn.addEventListener('click', async () => {
+                        
+                        //Cambiar el estado de la bandera
+                        editStatus = true;
+
+                        //Obtener el id del trimestre
+                        id = btn.dataset.id;                    
+                        
+                        try {
+                            // Obtener los datos del trimestre
+                            const trimestre = await obtenerTrimestre(id);
+                            
+                            // Asignar los datos al formulario
+                            formulario.nombre.value = trimestre.nombre;
+                            formulario.fecha_inicio.value = trimestre.fecha_inicio;
+                            formulario.fecha_fin.value = trimestre.fecha_fin;
+                            
+
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    });
+                });                
+            });
+        });
+        
+
+        
 
         // Agregar un evento al boton guardar
         botonGuardar.addEventListener('click', () => {
@@ -121,8 +176,23 @@
                 fecha_fin
             };
 
-            // Guardar los datos en el servidor
-            guardarTrimestre(datos);
+            // Si estamos editando
+            if(editStatus){
+                // Actualizar los datos del trimestre  
+                actualizarTrimestre(id, datos);
+                
+                //Cambiar la bandera a false
+                editStatus = false;
+                
+                //Resetear el id
+                id = '';
+            }else{
+                // Guardar los datos en el servidor
+                guardarTrimestre(datos);
+            }
+
+            //Limpiar el formulario
+            formulario.reset();
         });
 
     </script>
