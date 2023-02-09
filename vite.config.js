@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+const { resolve } = require('path')
 //Add env variable to check if is production or development
 
 const env = process.env;
@@ -13,7 +14,13 @@ export default defineConfig({
   base: env.mode === "production" ? "/calificaciones-trimestrales/" : "/",
   build: {
     outDir: "docs",
-    assetsDir: "assets"
+    assetsDir: "assets",
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        trimestres: resolve(__dirname, 'trimestres.html')
+      }
+    }
   },
   plugins: []
 });

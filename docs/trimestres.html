@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis calificaciones</title>
+    
+  <script type="module" crossorigin src="/calificaciones-trimestrales/assets/trimestres-9d791534.js"></script>
+  <link rel="stylesheet" href="/calificaciones-trimestrales/assets/estilos-aa6ac6e9.css">
+</head>
+<body>
+    <header>
+        <!-- Insertar el logo de la universidad -->
+        <img src="/calificaciones-trimestrales/assets/logo-ecd3c26a.png" 
+            alt="Logo de la universidad">
+        Administración de mis calificaciones
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="/index.html">Inicio</a>
+            </li>
+
+            <li>
+                <a href="/calificaciones.html">Calificaciones</a>
+            </li>
+
+            <li>
+                <a href="/trimestres.html">Trimestres</a>
+            </li>
+        </ul>
+
+        <ul>
+            <li>
+                <a href="/perfil.html">Mi nombre</a>
+            </li>
+
+            <li>
+                <a href="/cerrar-sesión.html">Cerrar sesión</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>       
+        <section class="w-full md:w-4/12 ">
+            <p>Datos del trimestre</p>
+            <form action="" id="formulario">
+                <label for="nombre">
+                    Trimestre
+                    <input name="nombre" type="text" required>
+                </label>
+
+                <label for="fecha_inicio">
+                    Fecha de inicio
+                    <input name="fecha_inicio" type="date" required>
+                </label>
+
+                <label for="fecha_fin">
+                    Fecha de fin
+                    <input name="fecha_fin" type="date" required>
+                </label>
+
+                <div class="footer">
+                    <button id="guardar" type="button">
+                        Guardar
+                    </button>
+                </div>
+                
+            </form>
+        </section>
+
+        <section class="w-full md:w-8/12">
+            <p>Trimestres registrados</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nombre</th>
+                        <th>Fechas</th>
+                        <th>Tareas</th>
+                    </tr>
+                </thead>
+
+                <tbody id="trimestres">
+                               
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <!-- Incluir el modelo trimestres para manipular la coleccion -->
+    
+</body>
+</html>
