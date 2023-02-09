@@ -8,7 +8,7 @@ env.mode = env.mode || "production";
 console.log('Environment: ', env.mode); 
 
 export default defineConfig({
-  root: "./sistemas-2022-2027",
+  root: "./",
   //Add base route if deployiing on production
   //calificaciones-trimestrales
   base: env.mode === "production" ? "/" : "/",
