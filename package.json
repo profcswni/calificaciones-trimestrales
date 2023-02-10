@@ -8,6 +8,8 @@
     "datatables.net": "^1.13.2",
     "datatables.net-bs4": "^1.13.2",
     "datatables.net-dt": "^1.13.2",
+    "datatables.net-responsive": "^2.4.0",
+    "datatables.net-responsive-dt": "^2.4.0",
     "firebase": "^9.16.0",
     "iconify": "^1.4.0",
     "jquery": "^3.6.3",

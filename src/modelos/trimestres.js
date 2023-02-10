@@ -74,6 +74,7 @@ export let setId = (value) => {
 
 export const drawATable = (dataSet) => {
     var tabla = $('#lista').DataTable({
+        responsive: true,
         language: {
             url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
         },

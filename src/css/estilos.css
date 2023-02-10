@@ -1,6 +1,9 @@
 /*Import datatables css from package*/
 @import "../../node_modules/datatables.net-dt/css/jquery.dataTables.css";
 @import "../../node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css";
+@import "../../node_modules/datatables.net-responsive-dt/css/responsive.dataTables.min.css";
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
