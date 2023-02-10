@@ -18,31 +18,34 @@
     <nav>
         <ul>
             <li>
-                <a href="/index.html">Inicio</a>
+                <a href="index.html">Inicio</a>
             </li>
 
             <li>
-                <a href="/calificaciones.html">Calificaciones</a>
+                <a href="calificaciones.html">Calificaciones</a>
             </li>
 
-            <li>
-                <a href="/trimestres.html">Trimestres</a>
+            <li id="mostrar_trimestres">
+                <a href="trimestres.html">Trimestres</a>
             </li>
         </ul>
 
         <ul>
+            <!-- Show the avatar of current user -->
             <li>
-                <a href="/perfil.html">Mi nombre</a>
+                <img id="imagen_usuario" referrerpolicy="no-referrer" alt="Avatar" id="avatar" class="w-8 h-8 rounded-full">
+            <li>
+                <a href="#" id="nombre"></a>
             </li>
 
             <li>
-                <a href="/cerrar-sesión.html">Cerrar sesión</a>
+                <a href="#" id="cerrar"></a>
             </li>
         </ul>
     </nav>
 
     <main>       
-        <section class="w-full md:w-4/12 ">
+        <section class="section-izquierda">
             <p>Datos del trimestre</p>
             <form action="" id="formulario">
                 <label for="nombre">
@@ -69,7 +72,7 @@
             </form>
         </section>
 
-        <section class="w-full md:w-8/12">
+        <section class="section-derecha">
             <p>Trimestres registrados</p>
             <table>
                 <thead>
@@ -89,7 +92,17 @@
     </main>
     <!-- Incluir el modelo trimestres para manipular la coleccion -->
     <script type="module" >
+        import './src/js/auth';
+        
+        import {getUser, getAdmin} from './src/js/user';
+        
         import {guardarTrimestre, obtenerTrimestres, obtenerTrimestre, actualizarTrimestre} from '/src/modelos/trimestres.js';
+        
+        if(getUser().id !== getAdmin()){
+            //redireccionar a la pagina de inicio
+            window.location.href = 'index.html';
+        }
+        
         // Obtener el formulario
         const formulario = document.getElementById('formulario');
 
@@ -158,9 +171,7 @@
                 });                
             });
         });
-        
-
-        
+             
 
         // Agregar un evento al boton guardar
         botonGuardar.addEventListener('click', () => {
@@ -168,6 +179,12 @@
             const nombre = formulario.nombre.value;
             const fecha_inicio = formulario.fecha_inicio.value;
             const fecha_fin = formulario.fecha_fin.value;
+
+            //validar que los campos no esten vacios
+            if(nombre === '' || fecha_inicio === '' || fecha_fin === ''){
+                alert('Todos los campos son obligatorios');
+                return;
+            }
 
             // Crear un objeto con los datos del formulario
             const datos = {

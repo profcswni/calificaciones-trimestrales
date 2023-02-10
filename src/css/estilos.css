@@ -13,7 +13,9 @@ header {
      text-white
      uppercase 
      text-[2em]
-     bg-gray-700;
+     bg-gradient-to-b
+     from-white
+     to-sky-500;
 }
 
 header img {
@@ -30,7 +32,7 @@ main{
     @apply flex flex-col gap-2 p-2 mt-4 text-gray-700 md:flex-row;
 }
 nav{
-    @apply flex justify-between p-4 text-white shadow-lg bg-gradient-to-b from-blue-500 to-blue-700 shadow-gray-400;
+    @apply flex justify-between p-4 text-white border-t-8 border-yellow-400 shadow-lg bg-gradient-to-b from-teal-500 to-teal-700 shadow-gray-400;
 }
 nav ul {
     @apply flex gap-4;
@@ -43,7 +45,7 @@ nav li:hover{
     @apply hover:border-yellow-400; 
 }
 
-input {
+input, select {
     @apply w-full p-2 rounded-lg ring-2 ring-blue-200 focus:ring-blue-400 focus:border-none focus:outline-none;
 }
 
@@ -74,9 +76,24 @@ td{
 
 /*Estilos para los botones de editar y eliminar*/
 .editar {
-    @apply bg-amber-400 hover:bg-amber-500 active:bg-amber-600 active:ring-amber-500 active:ring-4;
+    @apply bg-orange-400 hover:bg-orange-500 active:bg-orange-600 active:ring-orange-500 active:ring-4;
 }
 .eliminar {
-    @apply bg-rose-400 hover:bg-rose-500 active:bg-rose-600 active:ring-rose-500 active:ring-4;
+    @apply bg-pink-400 hover:bg-pink-500 active:bg-pink-600 active:ring-pink-500 active:ring-4;
 }
 
+
+#btn-google{
+    @apply flex items-center justify-center p-4 mx-auto text-lg bg-opacity-25 bg-sky-500 ;
+}
+#btn-google img{
+    @apply w-auto h-12;
+}
+
+.section-izquierda{
+    @apply w-full md:w-4/12;
+}
+
+.section-derecha{
+    @apply w-full md:w-8/12;
+}

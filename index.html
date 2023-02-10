@@ -25,18 +25,21 @@
                 <a href="calificaciones.html">Calificaciones</a>
             </li>
 
-            <li>
+            <li id="mostrar_trimestres">
                 <a href="trimestres.html">Trimestres</a>
             </li>
         </ul>
 
         <ul>
+            <!-- Show the avatar of current user -->
             <li>
-                <a href="perfil.html">Mi nombre</a>
+                <img id="imagen_usuario" referrerpolicy="no-referrer" alt="Avatar" id="avatar" class="w-8 h-8 rounded-full">
+            <li>
+                <a href="perfil.html" id="nombre"></a>
             </li>
 
             <li>
-                <a href="cerrar-sesión.html">Cerrar sesión</a>
+                <a href="cerrar-sesión.html" id="cerrar"></a>
             </li>
         </ul>
     </nav>
@@ -46,6 +49,10 @@
             <p>Calificaciones</p>            
         </section>
     </main>
+
+    <script type="module">
+        import './src/js/auth.js';
+    </script>
 
 </body>
 </html>

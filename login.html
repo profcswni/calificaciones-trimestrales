@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenidos</title>
+    <link rel="stylesheet" href="./src/css/estilos.css">
+</head>
+<body>
+    <header>
+        <!-- Insertar el logo de la universidad -->
+        <img src="./src/images/logo.png" 
+            alt="Logo de la universidad">
+        Administración de mis calificaciones
+    </header>
+
+    <main>       
+        <section class="w-full text-center">
+            <p class="text-center">Inicio de sesión</p>
+
+            <!-- Crear un boton con el logo de Google para iniciar sesion -->
+            <a href="#" id="btn-google" class="">
+                <img src="./src/images/logo-google.png" class="" alt="Logo de Google">
+                <span>Iniciar sesión</span>
+            </a>
+        </section>
+    </main>
+
+    <script type="module">
+        
+        import {loginWithGoogle} from './src/js/auth';
+
+        // Obtener el boton de Google
+        const btnGoogle = document.querySelector('#btn-google');
+        
+        // Agregar un evento al boton de Google
+        btnGoogle.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Iniciar sesion con Google
+            loginWithGoogle();
+        });
+    </script>
+
+</body>
+</html>
