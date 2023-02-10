@@ -7,15 +7,17 @@ body{
 }
 header {
     @apply bg-opacity-90
-    font-bold
+    
     py-10
     text-center
-     text-white
      uppercase 
      text-[2em]
      bg-gradient-to-b
      from-white
-     to-sky-500;
+     to-teal-500;
+}
+header p {
+    @apply font-bold text-transparent bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text;
 }
 
 header img {
@@ -32,7 +34,7 @@ main{
     @apply flex flex-col gap-2 p-2 mt-4 text-gray-700 md:flex-row;
 }
 nav{
-    @apply flex justify-between p-4 text-white border-t-8 border-yellow-400 shadow-lg bg-gradient-to-b from-teal-500 to-teal-700 shadow-gray-400;
+    @apply flex justify-between p-4 text-white border-t-8 border-yellow-400 shadow-lg bg-gradient-to-b from-teal-600 to-teal-800 shadow-gray-400;
 }
 nav ul {
     @apply flex gap-4;
@@ -96,4 +98,7 @@ td{
 
 .section-derecha{
     @apply w-full md:w-8/12;
+}
+.texto_nombre_usuario{
+    @apply hidden md:block;
 }
