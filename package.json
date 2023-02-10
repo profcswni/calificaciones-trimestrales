@@ -5,8 +5,13 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "datatables.net": "^1.13.2",
+    "datatables.net-bs4": "^1.13.2",
+    "datatables.net-dt": "^1.13.2",
     "firebase": "^9.16.0",
     "iconify": "^1.4.0",
+    "jquery": "^3.6.3",
+    "sweetalert": "^2.1.2",
     "vite": "^4.0.4"
   },
   "devDependencies": {

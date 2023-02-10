@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,12 +8,15 @@
     <title>Mis calificaciones</title>
     <link rel="stylesheet" href="/src/css/estilos.css">
     <!-- Theme color -->
-    <meta name="theme-color" content="#1d695f">
+    <meta name="theme-color" content="#166534">
     <!-- Theme color on ios -->
-    <meta name="apple-mobile-web-app-status-bar-style" content="#1d695f">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#166534">
     <!-- Theme color on ms phones -->
-    <meta name="msapplication-navbutton-color" content="#1d695f">
+    <meta name="msapplication-navbutton-color" content="#166534">
+    <!-- Icon -->
+    <link rel="icon" href="./src/images/logo.png">
 </head>
+
 <body>
     <nav id="menu">
         <ul class="responsive">
@@ -43,14 +47,13 @@
             </li>
         </ul>
     </nav>
-    
+
     <header>
         <!-- Insertar el logo de la universidad -->
-        <img src="/src/images/logo.png" 
-            alt="Logo de la universidad">
-        <p>Administración de mis calificaciones</p>      
+        <img src="/src/images/logo.png" alt="Logo de la universidad">
+        <p>Administración de mis calificaciones</p>
     </header>
-  
+
     <main id="main">
         <section class="section-izquierda">
             <p>Datos del trimestre</p>
@@ -75,13 +78,13 @@
                         Guardar
                     </button>
                 </div>
-                
+
             </form>
         </section>
 
         <section class="section-derecha">
             <p>Trimestres registrados</p>
-            <table>
+            <table id="lista">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -92,49 +95,56 @@
                 </thead>
 
                 <tbody id="trimestres">
-                               
+
                 </tbody>
             </table>
         </section>
     </main>
     <!-- Incluir el modelo trimestres para manipular la coleccion -->
-    <script type="module" >
+    <script type="module">
         import './src/js/auth';
+
+        import { getUser, getAdmin } from './src/js/user';
+
+        import {editStatus,canEdit, id,setId, drawATable, guardarTrimestre, obtenerTrimestres, obtenerTrimestre, actualizarTrimestre, eliminarTrimestre} from '/src/modelos/trimestres.js';
+
+        //Alertas
+        import swal from 'sweetalert';
         
-        import {getUser, getAdmin} from './src/js/user';
+        //Plugin de tablas
+        import $ from "jquery";
         
-        import {guardarTrimestre, obtenerTrimestres, obtenerTrimestre, actualizarTrimestre} from '/src/modelos/trimestres.js';
-        
-        if(getUser().id !== getAdmin()){
+        window.$ = $
+        import DataTable from 'datatables.net';
+        window.DataTable = DataTable;
+
+
+
+        if (getUser().id !== getAdmin()) {
             //redireccionar a la pagina de inicio
             window.location.href = 'index.html';
         }
-        
+
         // Obtener el formulario
         const formulario = document.getElementById('formulario');
 
         // Obtener el boton guardar
-        const botonGuardar = document.getElementById('guardar');
-        
-        // Obtener el tbody de la tabla
-        const tbody = document.getElementById("trimestres");
-        
-        //Flag para saber si estamos editando o creando un trimestre
-        let editStatus = false;
+        let botonGuardar = document.getElementById('guardar');
 
-        // Variable para almacenar el id del trimestre a editar
-        let id = '';
-        
+        // Obtener el tbody de la tabla
+        //const tbody = document.getElementById("trimestres");
+       
+
         // Obtener los trimestres del servidor usando el evento
         // DOMContentLoaded
         document.addEventListener('DOMContentLoaded', async () => {
             await obtenerTrimestres((datos) => {
-                
-                tbody.innerHTML = '';
-                
-                datos.forEach((trimestre) => {
+                let dataSet = [];
+                //tbody.innerHTML = '';
 
-                    tbody.innerHTML += `
+                datos.forEach((trimestre) => {
+                    dataSet.push([trimestre.nombre, trimestre.fecha_inicio, trimestre.fecha_fin, `<div class="tareas"><button data-id="${trimestre.id}" class="editar">Editar</button><button data-id="${trimestre.id}" class="eliminar">Eliminar</button></div>`]);
+                    /*tbody.innerHTML += `
                     <tr>
                         <td>1</td>
                         <td>${trimestre.nombre}</td>
@@ -146,39 +156,19 @@
                             </div>
                         </td>
                     </tr>
-                    `;
+                    `;*/
                 });
-                
-                //Evento para editar los trimestres al dar clic en el boton .editar
-                const btnsEditar = document.querySelectorAll('.editar');
 
-                btnsEditar.forEach((btn) => {
-                    btn.addEventListener('click', async () => {
-                        
-                        //Cambiar el estado de la bandera
-                        editStatus = true;
-
-                        //Obtener el id del trimestre
-                        id = btn.dataset.id;                    
-                        
-                        try {
-                            // Obtener los datos del trimestre
-                            const trimestre = await obtenerTrimestre(id);
-                            
-                            // Asignar los datos al formulario
-                            formulario.nombre.value = trimestre.nombre;
-                            formulario.fecha_inicio.value = trimestre.fecha_inicio;
-                            formulario.fecha_fin.value = trimestre.fecha_fin;
-                            
-
-                        } catch (error) {
-                            console.log(error);
-                        }
-                    });
-                });                
+                //Inicializar la tabla if it has not been initialized
+                if ($.fn.DataTable.isDataTable('#lista')) {
+                    $('#lista').DataTable().destroy();
+                    drawATable(dataSet)
+                } else {
+                    drawATable(dataSet);
+                }
             });
         });
-             
+
 
         // Agregar un evento al boton guardar
         botonGuardar.addEventListener('click', () => {
@@ -188,8 +178,13 @@
             const fecha_fin = formulario.fecha_fin.value;
 
             //validar que los campos no esten vacios
-            if(nombre === '' || fecha_inicio === '' || fecha_fin === ''){
-                alert('Todos los campos son obligatorios');
+            if (nombre === '' || fecha_inicio === '' || fecha_fin === '') {
+                swal({
+                    title: "Error!",
+                    text: "Todos los campos son obligatorios!",
+                    icon: "warning",
+                    button: "Ok!",
+                  });
                 return;
             }
 
@@ -201,24 +196,29 @@
             };
 
             // Si estamos editando
-            if(editStatus){
+            if (editStatus) {
                 // Actualizar los datos del trimestre  
                 actualizarTrimestre(id, datos);
-                
-                //Cambiar la bandera a false
-                editStatus = false;
-                
+
+                //Cambiar la bandera a false para que no se actualice
+                canEdit(false);                
+
                 //Resetear el id
-                id = '';
-            }else{
+                setId('');
+
+
+            } else {
                 // Guardar los datos en el servidor
                 guardarTrimestre(datos);
+                
             }
 
+            swal("Bien hecho!", "Sus datos se han registrado!", "success");
             //Limpiar el formulario
             formulario.reset();
         });
 
     </script>
 </body>
+
 </html>

@@ -1,3 +1,6 @@
+/*Import datatables css from package*/
+@import "../../node_modules/datatables.net-dt/css/jquery.dataTables.css";
+@import "../../node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -33,7 +36,7 @@ main{
     @apply flex flex-col gap-2 p-2 mt-4 text-gray-700 md:flex-row;
 }
 nav{
-    @apply flex flex-col-reverse justify-between hidden p-4 text-white border-t-8 border-yellow-400 shadow-lg sm:flex-row bg-gradient-to-b from-teal-400 to-teal-800 shadow-gray-400;
+    @apply flex flex-col-reverse justify-between hidden p-4 text-white border-t-8 border-yellow-400 shadow-lg sm:flex-row bg-gradient-to-b from-green-400 to-green-800 shadow-gray-400;
 }
 nav ul {
     @apply flex gap-4;
@@ -50,32 +53,30 @@ ul.perfil{
     @apply flex justify-between mt-2 border-b sm:mt-0 sm:border-none ; 
 }
 
-
-
 ul.responsive{
     @apply flex pt-2 text-center sm:flex-row sm:items-center lg:justify-between sm:pt-0;
 }
 
 ul.responsive li{
-    @apply w-full font-bold text-teal-800 bg-white rounded-lg sm:rounded-none sm:bg-transparent sm:text-inherit ;
+    @apply w-full font-bold rounded-lg sm:rounded-none ;
 }
 
 input, select {
-    @apply w-full p-2 rounded-lg ring-2 ring-blue-200 focus:ring-blue-400 focus:border-none focus:outline-none;
+    @apply w-full p-2 rounded-lg ring-2 ring-gray-200 focus:ring-gray-400 focus:border-none focus:outline-none;
 }
 
 button[type="button"], button {
     @apply px-4 py-2 
     text-white 
-    bg-blue-400 rounded-lg 
-    hover:bg-blue-500 
-    active:bg-blue-600
+    bg-green-600 rounded-lg 
+    hover:bg-green-500 
+    active:bg-green-800
     active:ring-4
     active:top-[1px] active:relative; 
 }
 
 .footer {
-    @apply relative bottom-0 flex justify-end p-2 mt-4 bg-blue-100 border-t border-green-700 border-dashed rounded-b-lg;
+    @apply relative bottom-0 flex justify-end p-2 mt-4 border-t border-green-700 border-dashed rounded-b-lg bg-emerald-100;
 }
 
 table{
