@@ -49,8 +49,10 @@ if (!user && page !== 'login.html') {
         user = JSON.parse(user);
         //Mostrar el nombre del usuario en el navbar
         document.getElementById('nombre').innerHTML = user.name;
+        document.getElementById('index_nombre').innerHTML = user.name;
         //Set the src image of the user
         document.getElementById('imagen_usuario').src = user.photo;
+        document.getElementById('index_perfil').src = user.photo;
 
         //Ocultar accesos
         if(user.id !== getAdmin()) {

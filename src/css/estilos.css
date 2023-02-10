@@ -26,14 +26,14 @@ header img {
 section{
     @apply p-2 border border-gray-100 rounded-lg shadow-lg bg-gray-50 shadow-stone-500;
 }
-section p{
-    @apply p-2 rounded-lg bg-teal-200 text-[1em] border-b-2 border-teal-600 mb-2 font-bold shadow-lg;
+section > p{
+    @apply p-1 rounded-lg bg-gray-100 text-[1em] border-b-2 border-teal-600 mb-2 font-bold shadow-lg;
 }
 main{
     @apply flex flex-col gap-2 p-2 mt-4 text-gray-700 md:flex-row;
 }
 nav{
-    @apply flex flex-col-reverse justify-between p-4 text-white border-t-8 border-yellow-400 shadow-lg sm:flex-row bg-gradient-to-b from-teal-600 to-teal-800 shadow-gray-400;
+    @apply flex flex-col-reverse justify-between p-4 text-white border-t-8 border-yellow-400 shadow-lg sm:flex-row bg-gradient-to-b from-teal-400 to-teal-800 shadow-gray-400;
 }
 nav ul {
     @apply flex gap-4;
