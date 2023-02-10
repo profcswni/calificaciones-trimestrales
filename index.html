@@ -3,45 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Mis calificaciones</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenidos</title>
     
-  <link rel="stylesheet" href="/assets/index-eef44a28.css">
+  <script type="module" crossorigin src="/calificaciones-trimestrales/assets/auth-79b9b581.js"></script>
+  <link rel="stylesheet" href="/calificaciones-trimestrales/assets/auth-dca2fc49.css">
 </head>
-<body class="text-white bg-gray-700 ">
-    <p class="font-bold py-10 text-center text-blue-500 uppercase bg-gradient-to-br from-yellow-400 via-red-500 to-blue-600 text-[2em]">
+<body>
+    <header>
         <!-- Insertar el logo de la universidad -->
-        <img class="block w-auto h-24 mx-auto" 
-            src="/assets/logo-ecd3c26a.png" 
+        <img src="/calificaciones-trimestrales/assets/logo-ecd3c26a.png" 
             alt="Logo de la universidad">
         Administración de mis calificaciones
-    </p>
+    </header>
 
-    <nav class="flex justify-between p-4 text-white bg-green-500">
-        <ul class="flex gap-4">
-            <li class="border-hover" >
+    <nav>
+        <ul>
+            <li>
                 <a href="index.html">Inicio</a>
             </li>
 
-            <li class="border-hover">
+            <li>
                 <a href="calificaciones.html">Calificaciones</a>
             </li>
 
-            <li class="border-hover">
+            <li id="mostrar_trimestres">
                 <a href="trimestres.html">Trimestres</a>
             </li>
         </ul>
 
-        <ul class="flex gap-4">
-            <li class="border-hover" >
-                <a href="perfil.html">Mi nombre</a>
+        <ul>
+            <!-- Show the avatar of current user -->
+            <li>
+                <img id="imagen_usuario" referrerpolicy="no-referrer" alt="Avatar" id="avatar" class="w-8 h-8 rounded-full">
+            <li>
+                <a href="perfil.html" id="nombre"></a>
             </li>
 
-            <li class="border-hover">
-                <a href="cerrar-sesión.html">Cerrar sesión</a>
+            <li>
+                <a href="cerrar-sesión.html" id="cerrar"></a>
             </li>
         </ul>
     </nav>
+
+    <main>       
+        <section class="w-full">
+            <p>Calificaciones</p>            
+        </section>
+    </main>
+
     
+
 </body>
 </html>

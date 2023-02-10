@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenidos</title>
+    
+  <script type="module" crossorigin src="/calificaciones-trimestrales/assets/auth-79b9b581.js"></script>
+  <link rel="stylesheet" href="/calificaciones-trimestrales/assets/auth-dca2fc49.css">
+</head>
+<body>
+    <header>
+        <!-- Insertar el logo de la universidad -->
+        <img src="/calificaciones-trimestrales/assets/logo-ecd3c26a.png" 
+            alt="Logo de la universidad">
+        Administración de mis calificaciones
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="index.html">Inicio</a>
+            </li>
+
+            <li>
+                <a href="calificaciones.html">Calificaciones</a>
+            </li>
+
+            <li id="mostrar_trimestres">
+                <a href="trimestres.html">Trimestres</a>
+            </li>
+        </ul>
+
+        <ul>
+            <!-- Show the avatar of current user -->
+            <li>
+                <img id="imagen_usuario" referrerpolicy="no-referrer" alt="Avatar" id="avatar" class="w-8 h-8 rounded-full">
+            <li>
+                <a href="perfil.html" id="nombre"></a>
+            </li>
+
+            <li>
+                <a href="#" id="cerrar"></a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>       
+        <section class="section-izquierda">
+            <p>Registro de notas</p>
+            <form action="" id="formulario">
+                <label for="trimestre">
+                    Trimestre
+                    <select name="trimestre" type="text" required></select>
+                </label>
+
+                <label for="profesor">
+                    Profesor
+                    <input name="profesor" type="text" required>
+                </label>
+
+                <label for="asignatura">
+                    Asignatura
+                    <input name="asignatura" type="text" required>
+                </label>
+
+                <label for="nota">
+                    Nota
+                    <input name="nota" type="number" required>
+                </label>
+
+                
+                <div class="footer">
+                    <button id="guardar" type="button">
+                        Guardar
+                    </button>
+                </div>
+                
+            </form>
+        </section>
+
+        <section class="w-full md:w-8/12">
+            <p>Calificaciones registradas</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Trimestre</th>
+                        <th>Profesor</th>
+                        <th>Materia</th>
+                        <th>Nota</th>
+                        <th>Tareas</th>
+                    </tr>
+                </thead>
+
+                <tbody id="calificaciones">
+                               
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    
+
+</body>
+</html>
