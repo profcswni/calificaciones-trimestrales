@@ -10,7 +10,7 @@ header {
     py-6
     text-center
      uppercase 
-     text-[1.5em]
+     text-[1em]
      bg-gradient-to-b
      from-blue-200
      to-white;
@@ -20,14 +20,14 @@ header p {
 }
 
 header img {
-    @apply block w-auto h-16 mx-auto;
+    @apply block w-auto h-10 mx-auto;
 }
 
 section{
-    @apply p-4 border border-gray-100 rounded-lg shadow-lg bg-gray-50 shadow-stone-500;
+    @apply p-2 border border-gray-100 rounded-lg shadow-lg bg-gray-50 shadow-stone-500;
 }
 section p{
-    @apply text-[1.5em] border-b-2 border-green-200 uppercase mb-4;
+    @apply p-2 rounded-lg bg-teal-200 text-[1em] border-b-2 border-teal-600 mb-2 font-bold shadow-lg;
 }
 main{
     @apply flex flex-col gap-2 p-2 mt-4 text-gray-700 md:flex-row;
