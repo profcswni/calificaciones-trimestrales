@@ -17,7 +17,7 @@ jobs:
 
       permissions:
         contents: write
-        
+
       steps:
         - name: Checkout 🛎️
           uses: actions/checkout@master
@@ -37,5 +37,5 @@ jobs:
           if: ${{ github.event_name != 'pull_request' }}
           uses: peaceiris/actions-gh-pages@v3
           with:
-            github_token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+            github_token: ${{ secrets.GITHUB_TOKEN }}
             publish_dir: docs
