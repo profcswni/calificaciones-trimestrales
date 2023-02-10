@@ -74,12 +74,20 @@ export let setId = (value) => {
 
 export const drawATable = (dataSet) => {
     var tabla = $('#lista').DataTable({
-        responsive: true,
+        responsive: {
+            details: {
+                renderer: $.fn.dataTable.Responsive.renderer.listHiddenNodes()
+            }
+        },
         language: {
             url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
         },
         data: dataSet,
         
+        //Set events on responsive resize
+            
+        
+
         //Set events after drawCallback
         "drawCallback": function () {
             //Obtener los botones de eliminar
