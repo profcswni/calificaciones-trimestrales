@@ -1,1 +1,0 @@
-window.localStorage.getItem("user_calificaciones");const t=()=>"jGc5KBPAlVcJT0lZ6oW1Gpa6pFx1",a=()=>{const e=window.localStorage.getItem("user_calificaciones");return JSON.parse(e)};export{t as a,a as g};
