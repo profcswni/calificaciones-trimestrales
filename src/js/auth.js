@@ -49,11 +49,21 @@ if (!user && page !== 'login.html') {
         user = JSON.parse(user);
         //Mostrar el nombre del usuario en el navbar
         document.getElementById('nombre').innerHTML = user.name;
-        document.getElementById('index_nombre').innerHTML = user.name;
+
+        //Si existe el elemento index_nombre, se le asigna el nombre del usuario
+        if(document.getElementById('index_nombre')){
+            document.getElementById('index_nombre').innerHTML = user.name;
+        }
+        
         //Set the src image of the user
         document.getElementById('imagen_usuario').src = user.photo;
-        document.getElementById('index_perfil').src = user.photo;
 
+        //Si existe el elemento index_perfil, se le asigna la imagen del usuario
+        if(document.getElementById('index_perfil')){
+            document.getElementById('index_perfil').src = user.photo;
+        }
+
+        
         //Ocultar accesos
         if(user.id !== getAdmin()) {
             document.getElementById('mostrar_trimestres').style.display = 'none';
@@ -66,6 +76,7 @@ if (!user && page !== 'login.html') {
             e.preventDefault();
             auth.signOut();
             localStorage.removeItem('user_calificaciones');
+
             window.location.href = 'login.html';
         }
         )

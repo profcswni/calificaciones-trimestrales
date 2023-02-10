@@ -107,6 +107,11 @@
 
     <script type="module">
         import './src/js/auth.js';
+        import {getUser, getAdmin} from './src/js/user';
+        if(getUser().id !== getAdmin()){
+            //redireccionar a la pagina de inicio
+            window.location.href = 'index.html';
+        }
     </script>
 
 </body>
