@@ -14,14 +14,7 @@
     <meta name="msapplication-navbutton-color" content="#1d695f">
 </head>
 <body>
-    <header>
-        <!-- Insertar el logo de la universidad -->
-        <img src="/src/images/logo.png" 
-            alt="Logo de la universidad">
-        <p>Administración de mis calificaciones</p>      
-    </header>
-
-    <nav>
+    <nav id="menu">
         <ul class="responsive">
             <li>
                 <a href="index.html">Inicio</a>
@@ -39,7 +32,8 @@
         <ul class="perfil">
             <!-- Show the avatar of current user -->
             <li>
-                <img id="imagen_usuario" referrerpolicy="no-referrer" alt="Avatar" id="avatar" class="w-8 h-8 rounded-full">
+                <img id="imagen_usuario" referrerpolicy="no-referrer" alt="Avatar" id="avatar"
+                    class="w-8 h-8 rounded-full">
             <li class="texto_nombre_usuario">
                 <a href="#" id="nombre"></a>
             </li>
@@ -49,8 +43,15 @@
             </li>
         </ul>
     </nav>
-
-    <main>       
+    
+    <header>
+        <!-- Insertar el logo de la universidad -->
+        <img src="/src/images/logo.png" 
+            alt="Logo de la universidad">
+        <p>Administración de mis calificaciones</p>      
+    </header>
+  
+    <main id="main">
         <section class="section-izquierda">
             <p>Datos del trimestre</p>
             <form action="" id="formulario">

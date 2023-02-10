@@ -42,9 +42,13 @@ export const getUser = () => {
 const page = window.location.pathname.split('/').pop();
 
 if (!user && page !== 'login.html') {
-    loginWithGoogle();
+    window.location.href = 'login.html';
 } else {
     if (page !== 'login.html') {
+        //Mostrar el menu de navegación
+        document.getElementById('menu').style.display = 'flex';
+        document.getElementById('main').style.display = 'flex';
+
         //Parse the user data from the window storage
         user = JSON.parse(user);
         //Mostrar el nombre del usuario en el navbar

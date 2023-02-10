@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenidos</title>
     <link rel="stylesheet" href="./src/css/estilos.css">
-     <!-- Theme color -->
+    <!-- Theme color -->
     <meta name="theme-color" content="#1d695f">
     <!-- Theme color on ios -->
     <meta name="apple-mobile-web-app-status-bar-style" content="#1d695f">
     <!-- Theme color on ms phones -->
     <meta name="msapplication-navbutton-color" content="#1d695f">
 </head>
-<body>
-    <header>
-        <!-- Insertar el logo de la universidad -->
-        <img src="./src/images/logo.png" 
-            alt="Logo de la universidad">
-        <p>Administración de mis calificaciones</p>
-    </header>
 
-    <nav>
+<body>
+    <nav id="menu">
         <ul class="responsive">
             <li>
                 <a href="index.html">Inicio</a>
@@ -39,9 +34,10 @@
         <ul class="perfil">
             <!-- Show the avatar of current user -->
             <li>
-                <img id="imagen_usuario" referrerpolicy="no-referrer" alt="Avatar" id="avatar" class="w-8 h-8 rounded-full">
+                <img id="imagen_usuario" referrerpolicy="no-referrer" alt="Avatar" id="avatar"
+                    class="w-8 h-8 rounded-full">
             <li class="texto_nombre_usuario">
-                <a href="perfil.html" id="nombre"></a>
+                <a href="#" id="nombre"></a>
             </li>
 
             <li>
@@ -49,8 +45,13 @@
             </li>
         </ul>
     </nav>
+    <header>
+        <!-- Insertar el logo de la universidad -->
+        <img src="./src/images/logo.png" alt="Logo de la universidad">
+        <p>Administración de mis calificaciones</p>
+    </header>
 
-    <main>       
+    <main id="main">
         <section class="section-izquierda">
             <p>Registro de notas</p>
             <form action="" id="formulario">
@@ -74,13 +75,13 @@
                     <input name="nota" type="number" required>
                 </label>
 
-                
+
                 <div class="footer">
                     <button id="guardar" type="button">
                         Guardar
                     </button>
                 </div>
-                
+
             </form>
         </section>
 
@@ -99,7 +100,7 @@
                 </thead>
 
                 <tbody id="calificaciones">
-                               
+
                 </tbody>
             </table>
         </section>
@@ -107,12 +108,13 @@
 
     <script type="module">
         import './src/js/auth.js';
-        import {getUser, getAdmin} from './src/js/user';
-        if(getUser().id !== getAdmin()){
+        import { getUser, getAdmin } from './src/js/user';
+        if (getUser().id !== getAdmin()) {
             //redireccionar a la pagina de inicio
             window.location.href = 'index.html';
         }
     </script>
 
 </body>
+
 </html>
