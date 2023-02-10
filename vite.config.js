@@ -18,7 +18,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        trimestres: resolve(__dirname, 'trimestres.html')
+        trimestres: resolve(__dirname, 'trimestres.html'),
+        login: resolve(__dirname, 'login.html'),
+        calificaciones: resolve(__dirname, 'calificaciones.html')
       }
     }
   },
