@@ -59,7 +59,7 @@ if (!user && page !== 'login.html') {
         
 
         //Cerrar sesión
-        document.getElementById('cerrar').innerHTML = 'Cerrar sesión'
+        document.getElementById('cerrar').innerHTML = 'Salir'
         document.getElementById('cerrar').addEventListener('click', (e) => {
             e.preventDefault();
             auth.signOut();

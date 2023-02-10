@@ -7,21 +7,20 @@ body{
 }
 header {
     @apply bg-opacity-90
-    
-    py-10
+    py-6
     text-center
      uppercase 
-     text-[2em]
+     text-[1.5em]
      bg-gradient-to-b
-     from-white
-     to-teal-500;
+     from-blue-200
+     to-white;
 }
 header p {
     @apply font-bold text-transparent bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text;
 }
 
 header img {
-    @apply block w-auto h-24 mx-auto;
+    @apply block w-auto h-16 mx-auto;
 }
 
 section{
@@ -34,7 +33,7 @@ main{
     @apply flex flex-col gap-2 p-2 mt-4 text-gray-700 md:flex-row;
 }
 nav{
-    @apply flex justify-between p-4 text-white border-t-8 border-yellow-400 shadow-lg bg-gradient-to-b from-teal-600 to-teal-800 shadow-gray-400;
+    @apply flex flex-col-reverse justify-between p-4 text-white border-t-8 border-yellow-400 shadow-lg sm:flex-row bg-gradient-to-b from-teal-600 to-teal-800 shadow-gray-400;
 }
 nav ul {
     @apply flex gap-4;
@@ -45,6 +44,20 @@ nav li{
 }
 nav li:hover{
     @apply hover:border-yellow-400; 
+}
+
+ul.perfil{
+    @apply flex justify-between mt-2 border-b sm:mt-0 sm:border-none ; 
+}
+
+
+
+ul.responsive{
+    @apply flex pt-2 text-center sm:flex-row sm:items-center lg:justify-between sm:pt-0;
+}
+
+ul.responsive li{
+    @apply w-full font-bold text-teal-800 bg-white rounded-lg sm:rounded-none sm:bg-transparent sm:text-inherit ;
 }
 
 input, select {
@@ -69,7 +82,7 @@ table{
     @apply w-full;
 }
 td{
-    @apply py-2 border-b border-gray-200;
+    @apply py-1 border-b border-gray-200;
 }
 /*Div que contiene los botones de editar y eliminar*/
 .tareas{
@@ -78,10 +91,10 @@ td{
 
 /*Estilos para los botones de editar y eliminar*/
 .editar {
-    @apply bg-orange-400 hover:bg-orange-500 active:bg-orange-600 active:ring-orange-500 active:ring-4;
+    @apply p-1 bg-orange-400 hover:bg-orange-500 active:bg-orange-600 active:ring-orange-500 active:ring-4;
 }
 .eliminar {
-    @apply bg-pink-400 hover:bg-pink-500 active:bg-pink-600 active:ring-pink-500 active:ring-4;
+    @apply p-1 bg-pink-400 hover:bg-pink-500 active:bg-pink-600 active:ring-pink-500 active:ring-4;
 }
 
 
@@ -101,4 +114,7 @@ td{
 }
 .texto_nombre_usuario{
     @apply hidden md:block;
+}
+#cerrar{
+    @apply p-1 font-bold text-teal-800 bg-white rounded-lg shadow-lg;
 }
