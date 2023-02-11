@@ -15,8 +15,10 @@
     <meta name="msapplication-navbutton-color" content="#166534">
     <!-- Icon -->
     <link rel="icon" href="/calificaciones-trimestrales/assets/logo-ecd3c26a.png">
-  <script type="module" crossorigin src="/calificaciones-trimestrales/assets/auth-6ad92d46.js"></script>
-  <link rel="stylesheet" href="/calificaciones-trimestrales/assets/auth-7235050d.css">
+  <script type="module" crossorigin src="/calificaciones-trimestrales/assets/calificaciones-90135955.js"></script>
+  <link rel="modulepreload" crossorigin href="/calificaciones-trimestrales/assets/auth-b795a22c.js">
+  <link rel="modulepreload" crossorigin href="/calificaciones-trimestrales/assets/trimestres-28692e57.js">
+  <link rel="stylesheet" href="/calificaciones-trimestrales/assets/auth-a4c5dbd2.css">
 </head>
 
 <body>
@@ -61,7 +63,7 @@
             <form action="" id="formulario">
                 <label for="trimestre">
                     Trimestre
-                    <select name="trimestre" type="text" required></select>
+                    <select id="trimestre" name="trimestre" required></select>
                 </label>
 
                 <label for="profesor">
@@ -91,10 +93,9 @@
 
         <section class="w-full md:w-8/12">
             <p>Calificaciones registradas</p>
-            <table>
+            <table id="lista">
                 <thead>
                     <tr>
-                        <th>No</th>
                         <th>Trimestre</th>
                         <th>Profesor</th>
                         <th>Materia</th>
@@ -103,7 +104,7 @@
                     </tr>
                 </thead>
 
-                <tbody id="calificaciones">
+                <tbody>
 
                 </tbody>
             </table>
