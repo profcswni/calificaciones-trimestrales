@@ -6,7 +6,7 @@ const env = process.env;
 //Set a base route if deploying on github pages
 env.mode = env.mode || "production";
 
-console.log('Environment: ', env.mode); 
+console.log('Environment: ', env.mode);
 
 export default defineConfig({
   root: "./",
@@ -24,5 +24,10 @@ export default defineConfig({
       }
     }
   },
+
+  server: {
+    host: '192.168.1.3',
+  },
+
   plugins: []
 });

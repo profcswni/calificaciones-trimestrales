@@ -1,56 +1,51 @@
 //Import the auth module from firebase
 import { auth } from '../js/firebase'
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getUser, getAdmin } from './user.js';
 
+//Declarar una variable para almacenar los datos del usuario
 let user = window.localStorage.getItem('user_calificaciones');
 
 // Function to authenticate the user with Google
 export const loginWithGoogle = async () => {
     if (!user) {
         const provider = new GoogleAuthProvider();
-        //Set a domain for email verification
+        //Definir el dominio de la cuenta de google
+        //Solo se permitirá el acceso a cuentas de la universidad
+        
         provider.setCustomParameters({
+            login_hint: 'estudiante@uml.edu.ni',
             hd: 'uml.edu.ni'
         });
 
         const result = await signInWithPopup(auth, provider);
-        user = {
-            user: result,
+        user = {            
             id: result.user.uid,
             name: result.user.displayName,
             photo: result.user.photoURL
         };
-        //Create a window storage item to save user data
+        //Guardar los datos del usuario en el localStorage
         localStorage.setItem('user_calificaciones', JSON.stringify(user));
     }
+
+    //Redireccionar a la página principal
     window.location.href = 'index.html';
 }
-
-//Set an id to validate an admin use
-export const getAdmin = () => {
-    //Id de la cuenta de administrador (Creador de la aplicación)
-    return 'jGc5KBPAlVcJT0lZ6oW1Gpa6pFx1';
-}
-
-//Get the user data from the window storage
-export const getUser = () => {
-    const user = window.localStorage.getItem('user_calificaciones');
-    return JSON.parse(user);
-}
-
-//Detect the current page name
+//Detectar la página actual
 const page = window.location.pathname.split('/').pop();
 
 if (!user && page !== 'login.html') {
     window.location.href = 'login.html';
 } else {
     if (page !== 'login.html') {
+        
         //Mostrar el menu de navegación
         document.getElementById('menu').style.display = 'flex';
         document.getElementById('main').style.display = 'flex';
 
-        //Parse the user data from the window storage
-        user = JSON.parse(user);
+        //Extraer los datos del usuario
+        user = getUser();
+
         //Mostrar el nombre del usuario en el navbar
         document.getElementById('nombre').innerHTML = user.name;
 
@@ -69,7 +64,9 @@ if (!user && page !== 'login.html') {
 
         
         //Ocultar accesos
-        if(user.id !== getAdmin()) {
+        //Find id of the user into the array of admin
+        
+        if(!getAdmin().find(admin => admin == user.id)) {
             document.getElementById('mostrar_trimestres').style.display = 'none';
         }
         

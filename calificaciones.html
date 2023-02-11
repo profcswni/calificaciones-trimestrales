@@ -59,7 +59,7 @@
             <form action="" id="formulario">
                 <label for="trimestre">
                     Trimestre
-                    <select name="trimestre" type="text" required></select>
+                    <select id="trimestre" name="trimestre" required></select>
                 </label>
 
                 <label for="profesor">
@@ -89,10 +89,9 @@
 
         <section class="w-full md:w-8/12">
             <p>Calificaciones registradas</p>
-            <table>
+            <table id="lista">
                 <thead>
                     <tr>
-                        <th>No</th>
                         <th>Trimestre</th>
                         <th>Profesor</th>
                         <th>Materia</th>
@@ -101,7 +100,7 @@
                     </tr>
                 </thead>
 
-                <tbody id="calificaciones">
+                <tbody>
 
                 </tbody>
             </table>
@@ -109,9 +108,156 @@
     </main>
 
     <script type="module">
-        import './src/js/auth.js';
+        //Alertas
+        import swal from 'sweetalert';
         
-    </script>
+        //Plugin de tablas
+        import $ from "jquery";
+         
+         window.$ = $
+         import DataTable from 'datatables.net';
+         window.DataTable = DataTable;
+ 
+         //Enable responsive globally
+         import Responsive from 'datatables.net-responsive';
+         import './src/js/auth';
+         
+         import { 
+             getUser,
+             getAdmin
+         }from './src/js/user';
+ 
+         import {
+             editStatus,
+             canEdit,
+             id,
+             setId,
+             crearTabla,
+             guardarNota,
+             obtenerNotas,
+             obtenerNota,
+             actualizarNota,
+             eliminarNota
+         } from '/src/modelos/calificaciones.js';
+
+         //OBtener los trimestres
+         import {
+             obtenerTrimestres,
+             obtenerTrimestre
+         } from './src/modelos/trimestres.js';
+         
+ 
+         // Obtener el formulario
+         const formulario = document.getElementById('formulario');
+ 
+         // Obtener el boton guardar
+         let botonGuardar = document.getElementById('guardar');
+           
+         // Obtener las notas del servidor usando el evento
+         // DOMContentLoaded
+         document.addEventListener('DOMContentLoaded', async () => {
+            //Recorrer los trimestres para crear el select
+            const selectTrimestres = document.getElementById('trimestre');
+            
+            const trimestresArray = [];
+            
+            await obtenerTrimestres((trimestres) => {
+                trimestres.forEach(trimestre => {
+                    const option = document.createElement('option');
+                    option.value = trimestre.id;
+                    option.textContent = trimestre.nombre;
+                    selectTrimestres.appendChild(option);
+                    
+                    //Crear un array con los trimestres (asociarlos id con valor)
+                    trimestresArray[trimestre.id] = trimestre.nombre;
+                });
+            });
+
+            
+             await obtenerNotas( (datos) => {
+                 
+                 let dataSet = [];
+                
+                 datos.forEach((nota) => {
+                     
+                    dataSet.push([
+                             trimestresArray[nota.trimestre],
+                             nota.profesor,
+                             nota.asignatura,
+                             nota.nota,
+                             `<div class="tareas">
+                                 <button data-id="${nota.id}" class="editar">Editar</button>
+                                 <button data-id="${nota.id}" class="eliminar">Eliminar</button>
+                             </div>`
+                         ]);
+                 });
+ 
+                 //Inicializar la tabla SI NO EXISTE 
+                 //y destruirla SI EXISTE
+                 if ($.fn.DataTable.isDataTable('#lista')) {
+                     $('#lista').DataTable().destroy();
+                     crearTabla(dataSet)
+                 } else {
+                     //Inicializar la tabla SI NO EXISTE
+                     crearTabla(dataSet);
+                 }
+ 
+             });
+         });
+ 
+ 
+         // Agregar un evento al boton guardar
+         botonGuardar.addEventListener('click', () => {
+             // Obtener los datos del formulario
+             const trimestre = formulario.trimestre.value;
+             const profesor = formulario.profesor.value;
+             const asignatura = formulario.asignatura.value;
+             const nota = formulario.nota.value;
+ 
+             //validar que los campos no esten vacios
+             if (trimestre === '' || profesor === '' || asignatura === ''|| nota === '') {
+                 swal({
+                     title: "Error!",
+                     text: "Todos los campos son obligatorios!",
+                     icon: "warning",
+                     button: "Ok!",
+                   });
+                 return;
+             }
+ 
+             //Obtener el id del usuario actual
+             let user = getUser().id;
+
+             // Crear un objeto con los datos del formulario
+             const datos = {
+                 trimestre,
+                 profesor,
+                 asignatura,
+                 nota,
+                //Añadir el usuario
+                user
+             };
+ 
+             // Si estamos editando
+             if (editStatus) {
+                 // Actualizar los datos del nota  
+                 actualizarNota(id, datos);
+ 
+                 //Cambiar la bandera a false para que no se actualice
+                 canEdit(false);
+ 
+                 //Resetear el id
+                 setId('');
+             } else {
+                 // Guardar los datos en el servidor
+                 guardarNota(datos);
+                 
+             }
+             swal("Bien hecho!", "Sus datos se han registrado!", "success");
+             //Limpiar el formulario
+             formulario.reset();
+         });
+     </script>
 
 </body>
 

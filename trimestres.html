@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis calificaciones</title>
+    <title>Trimestres</title>
     <link rel="stylesheet" href="/src/css/estilos.css">
     <!-- Theme color -->
     <meta name="theme-color" content="#166534">
@@ -94,7 +94,7 @@
                     </tr>
                 </thead>
 
-                <tbody id="trimestres">
+                <tbody>
 
                 </tbody>
             </table>
@@ -102,17 +102,11 @@
     </main>
     <!-- Incluir el modelo trimestres para manipular la coleccion -->
     <script type="module">
-        import './src/js/auth';
-
-        import { getUser, getAdmin } from './src/js/user';
-
-        import {editStatus,canEdit, id,setId, drawATable, guardarTrimestre, obtenerTrimestres, obtenerTrimestre, actualizarTrimestre, eliminarTrimestre} from '/src/modelos/trimestres.js';
-
-        //Alertas
-        import swal from 'sweetalert';
-        
-        //Plugin de tablas
-        import $ from "jquery";
+       //Alertas
+       import swal from 'sweetalert';
+       
+       //Plugin de tablas
+       import $ from "jquery";
         
         window.$ = $
         import DataTable from 'datatables.net';
@@ -120,10 +114,28 @@
 
         //Enable responsive globally
         import Responsive from 'datatables.net-responsive';
+        import './src/js/auth';
+        
+        import { 
+            getUser,
+            getAdmin
+        }from './src/js/user';
 
+        import {
+            editStatus,
+            canEdit,
+            id,
+            setId,
+            crearTabla,
+            guardarTrimestre,
+            obtenerTrimestres,
+            obtenerTrimestre,
+            actualizarTrimestre,
+            eliminarTrimestre
+        } from '/src/modelos/trimestres.js';
+        
 
-
-        if (getUser().id !== getAdmin()) {
+        if(!getAdmin().find(admin => admin == getUser().id)) {
             //redireccionar a la pagina de inicio
             window.location.href = 'index.html';
         }
@@ -133,42 +145,37 @@
 
         // Obtener el boton guardar
         let botonGuardar = document.getElementById('guardar');
-
-        // Obtener el tbody de la tabla
-        //const tbody = document.getElementById("trimestres");
-       
-
+          
         // Obtener los trimestres del servidor usando el evento
         // DOMContentLoaded
         document.addEventListener('DOMContentLoaded', async () => {
             await obtenerTrimestres((datos) => {
+                
                 let dataSet = [];
-                //tbody.innerHTML = '';
-
+               
                 datos.forEach((trimestre) => {
-                    dataSet.push([trimestre.nombre, trimestre.fecha_inicio, trimestre.fecha_fin, `<div class="tareas"><button data-id="${trimestre.id}" class="editar">Editar</button><button data-id="${trimestre.id}" class="eliminar">Eliminar</button></div>`]);
-                    /*tbody.innerHTML += `
-                    <tr>
-                        <td>1</td>
-                        <td>${trimestre.nombre}</td>
-                        <td>${trimestre.fecha_inicio} - ${trimestre.fecha_fin}</td>
-                        <td>
-                            <div class="tareas">
+                    dataSet.push(
+                        [
+                            trimestre.nombre,
+                            trimestre.fecha_inicio,
+                            trimestre.fecha_fin,
+                            `<div class="tareas">
                                 <button data-id="${trimestre.id}" class="editar">Editar</button>
                                 <button data-id="${trimestre.id}" class="eliminar">Eliminar</button>
-                            </div>
-                        </td>
-                    </tr>
-                    `;*/
+                            </div>`
+                        ]);
                 });
 
-                //Inicializar la tabla if it has not been initialized
+                //Inicializar la tabla SI NO EXISTE 
+                //y destruirla SI EXISTE
                 if ($.fn.DataTable.isDataTable('#lista')) {
                     $('#lista').DataTable().destroy();
-                    drawATable(dataSet)
+                    crearTabla(dataSet)
                 } else {
-                    drawATable(dataSet);
+                    //Inicializar la tabla SI NO EXISTE
+                    crearTabla(dataSet);
                 }
+
             });
         });
 
@@ -204,24 +211,19 @@
                 actualizarTrimestre(id, datos);
 
                 //Cambiar la bandera a false para que no se actualice
-                canEdit(false);                
+                canEdit(false);
 
                 //Resetear el id
                 setId('');
-
-
             } else {
                 // Guardar los datos en el servidor
                 guardarTrimestre(datos);
                 
             }
-
             swal("Bien hecho!", "Sus datos se han registrado!", "success");
             //Limpiar el formulario
             formulario.reset();
         });
-
     </script>
 </body>
-
 </html>
