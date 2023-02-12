@@ -24,10 +24,10 @@ export default defineConfig({
       }
     }
   },
-
+  /* Esta linea se descomenta solo si se quiere probar el proyecto en un servidor local dentro de la red 
   server: {
-    host: '192.168.1.3',
-  },
+    host: '192.168.1.3', //Cambiar por la ip de la computadora generalmente es 127.0.0.1
+  },*/
 
   plugins: []
 });
